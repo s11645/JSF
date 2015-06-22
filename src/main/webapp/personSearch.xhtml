@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    template="/templates/default.xhtml"
+    xmlns:a4j="http://richfaces.org/a4j">
+    <ui:define name="content">
+
+	<p>#{msg.patientSearchInfo}</p>
+
+	<h:form>
+            <rich:messages/>
+            <rich:dataTable value="#{personBean.allPersons}" var="person" id="table" rows="30" >
+                <f:facet name="noData">
+                    Nothing found
+                </f:facet>
+                <rich:column sortBy="#{person.joinDate}" id="joinDateSort" sortOrder="#{personBean.sort.joinDateSort}">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.patientDateOfBirthLabel}" render="table" action="#{personBean.sortByJoinDate}"/>
+                    </f:facet>
+                    #{person.joinDate}
+                </rich:column>
+                <rich:column sortBy="#{person.name}" id="nameSort" sortOrder="#{personBean.sort.nameSort}">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.patientFirstNameLabel}" render="table" action="#{personBean.sortByName}"/>
+                    </f:facet>
+                    #{person.name}
+                </rich:column>
+                <rich:column sortBy="#{person.surname}" id="surnameSort" sortOrder="#{personBean.sort.surnameSort}">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.patientLastNameLabel}" render="table" action="#{personBean.sortBySurname}"/>
+                    </f:facet>
+                    #{person.surname}
+                </rich:column>
+                <rich:column sortBy="#{person.pesel}" id="peselSort" sortOrder="#{personBean.sort.peselSort}">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.patientPinLabel}" render="table" action="#{personBean.sortByPesel}"/>
+                    </f:facet>
+                    #{person.pesel}
+                </rich:column>
+                <rich:column sortBy="#{person.weight}" id="weightSort" sortOrder="#{personBean.sort.weightSort}">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.patientWeightLabel}" render="table" action="#{personBean.sortByWeight}"/>
+                    </f:facet>
+                    #{person.weight}
+                </rich:column>
+                <rich:column sortBy="#{person.height}" id="heightSort" sortOrder="#{personBean.sort.heightSort}">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.patientHeightLabel}" render="table" action="#{personBean.sortByHeight()}"/>
+                    </f:facet>
+                    #{person.height}
+                </rich:column>
+
+		<rich:column>
+                    <f:facet name="header">#{msg.action}</f:facet>
+                    <h:commandButton value="#{msg.actionDelete}" action="#{personBean.deletePerson}" />
+		</rich:column>
+            </rich:dataTable>
+	</h:form>
+    </ui:define>
+</ui:composition>

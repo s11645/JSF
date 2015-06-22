@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<div id="menubars">
+		<h:form>
+			<ul>
+				<li><h:commandLink value="#{msg.linkSearchEngine}" action="personSearch?faces-redirect=true" /></li>
+				<li><h:commandLink value="#{msg.patientAddLabel}" action="addPerson?faces-redirect=true" /></li>
+                                <li><h:commandLink value="Filtr" action="filterForm?faces-redirect=true" /></li>
+				<li class="lastbar"><h:commandLink value="#{msg.linkToolbox}"/></li>
+			</ul>
+		</h:form>
+	</div>
+</ui:composition>

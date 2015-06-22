@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<ui:define name="content">
+		<h:form id="personBean">
+			<f:event type="postValidate" listener="#{personBean.validatePeselDob}" />
+			<h:panelGrid columns="2">
+				<h:outputText value="#{msg.patientFirstNameLabel}" />
+				<h:inputText id="firstName" value="#{personBean.person.name}"
+					required="#{true}" />
+                                
+				<h:outputText value="#{msg.patientLastNameLabel}" />
+                                <h:inputText id="lastName" value="#{personBean.person.surname}"
+					required="#{true}" />
+
+				<h:outputText value="#{msg.patientPinLabel}" />
+                                <h:inputText id="pin" value="#{personBean.person.pesel}"
+                                             validator="#{personBean.uniquePesel}" required="#{true}">
+					<f:validator validatorId="peselValidator" />
+				</h:inputText>
+
+				<h:outputText value="#{msg.patientDateOfBirthLabel}" />
+                                <h:inputText id="dob" value="#{personBean.person.birthDate}">
+					<f:convertDateTime type="date" pattern="dd.MM.yyyy" />
+				</h:inputText>
+                                
+                                <h:outputText value="#{msg.patientAddressLabel}" />
+                                <h:inputText id="address" value="#{personBean.person.address}" required="#{true}"/>
+                                
+                                <h:outputText value="#{msg.patientPhoneNumberLabel}" />
+                                <h:inputText id="phoneNumber" value="#{personBean.person.number}" validator="#{personBean.validateNumber}" >
+                                             <f:validator validatorId="numberValidator" />
+                                </h:inputText>
+ 
+				<h:outputText value="#{msg.patientWeightLabel}" />
+                                <h:inputText id="weight" value="#{personBean.person.weight}" />
+
+				<h:outputText value="#{msg.patientHeightLabel}" />
+                                <h:inputText id="height" value="#{personBean.person.height}"/>
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.patientFormOKButton}" action="#{personBean.addPerson}"  />
+
+			<h:panelGrid>
+				<h:messages id="messages" showDetail="#{true}" showSummary="#{false}" />
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

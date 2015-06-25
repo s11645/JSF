@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -56,6 +61,7 @@ public class PersonBean implements Serializable {
 	
 	public String addPerson(){
 		personManager.addPerson(person);
+                addMessage("Dodano!");
 		return "personSearch?faces-redirect=true";
 	}
 	
@@ -65,13 +71,13 @@ public class PersonBean implements Serializable {
 		return null;
 	}
 	
-	public void uniquePesel(FacesContext context, UIComponent component, Object value) {
+	public void ifPeselExists(FacesContext context, UIComponent component, Object value) {
 
 		String pesel = (String) value;
 
 		for (Person person : personManager.getAllPersons()) {
 			if (person.getPesel().equalsIgnoreCase(pesel)) {
-				FacesMessage message = new FacesMessage("Person with this PIN already exists in database");
+				FacesMessage message = new FacesMessage("Osoba o tym numerze Pesel istnieje w bazie");
 				message.setSeverity(FacesMessage.SEVERITY_ERROR);
 				throw new ValidatorException(message);
 			}
@@ -85,29 +91,30 @@ public class PersonBean implements Serializable {
             {
                 if((number.charAt(i)!='0')&&(number.charAt(i)!='1')&&(number.charAt(i)!='2')&&(number.charAt(i)!='3')&&(number.charAt(i)!='4')&&(number.charAt(i)!='5')&&(number.charAt(i)!='6')&&(number.charAt(i)!='7')&&(number.charAt(i)!='8')&&(number.charAt(i)!='9'))
                 {
-                    FacesMessage message = new FacesMessage("Type values only from 0 to 9.");
+                    FacesMessage message = new FacesMessage("Wpisz wartości 0-9");
                     message.setSeverity(FacesMessage.SEVERITY_ERROR);
                     throw new ValidatorException(message);
                 }
             }
 	}
 	
-	public void validatePeselDob(ComponentSystemEvent event) {
+	public void validatePeselBirth(ComponentSystemEvent event) {
 
 		UIForm form = (UIForm) event.getComponent();
-		UIInput pesel = (UIInput) form.findComponent("pin");
-		UIInput dob = (UIInput) form.findComponent("dob");
+		UIInput pesel = (UIInput) form.findComponent("pesel");
+		UIInput birth = (UIInput) form.findComponent("birthDate");
 
-		if (pesel.getValue() != null && dob.getValue() != null && pesel.getValue().toString().length() >= 2) {
+		if (pesel.getValue() != null && birth.getValue() != null && pesel.getValue().toString().length() >= 2) {
+                    
 			String twoDigitsOfPesel = pesel.getValue().toString().substring(0, 2);
 			Calendar cal = Calendar.getInstance();
-			cal.setTime(((Date) dob.getValue()));
+			cal.setTime(((Date) birth.getValue()));
 
-			String lastDigitsOfDob = ((Integer) cal.get(Calendar.YEAR)).toString().substring(2);
+			String lastDigitsOfBirth = ((Integer) cal.get(Calendar.YEAR)).toString().substring(2);
 
-			if (!twoDigitsOfPesel.equals(lastDigitsOfDob)) {
+			if (!twoDigitsOfPesel.equals(lastDigitsOfBirth)) {
 				FacesContext context = FacesContext.getCurrentInstance();
-				context.addMessage(form.getClientId(), new FacesMessage("Pesel doesn't match date of birth"));
+				context.addMessage(form.getClientId(), new FacesMessage("Pesel jest niezgodny z datą urodzenia"));
 				context.renderResponse();
 			}
 		}
@@ -189,4 +196,9 @@ public class PersonBean implements Serializable {
             else sort.setHeightSort(SortOrder.ascending);
             
         }
+        
+        public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 }

@@ -3,53 +3,46 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
 	template="/templates/default.xhtml">
 
 	<ui:define name="content">
 		<h:form id="personBean">
-			<f:event type="postValidate" listener="#{personBean.validatePeselDob}" />
+                    <p:growl id="grow1" life="2000"/>   
+			<f:event type="postValidate" listener="#{personBean.validatePeselBirth}" />
 			<h:panelGrid columns="2">
-				<h:outputText value="#{msg.patientFirstNameLabel}" />
-				<h:inputText id="firstName" value="#{personBean.person.name}"
-					required="#{true}" />
+				<h:outputText value="#{msg.newName}" />
+                                <h:inputText id="name" value="#{personBean.person.name}" required="#{true}"/>
                                 
-				<h:outputText value="#{msg.patientLastNameLabel}" />
-                                <h:inputText id="lastName" value="#{personBean.person.surname}"
-					required="#{true}" />
+				<h:outputText value="#{msg.newSurname}" />
+                                <h:inputText id="surname" value="#{personBean.person.surname}" required="#{true}" />
 
-				<h:outputText value="#{msg.patientPinLabel}" />
-                                <h:inputText id="pin" value="#{personBean.person.pesel}"
-                                             validator="#{personBean.uniquePesel}" required="#{true}">
+				<h:outputText value="#{msg.newPesel}" />
+                                <h:inputText id="pesel" value="#{personBean.person.pesel}" validator="#{personBean.ifPeselExists}" required="#{true}">
 					<f:validator validatorId="peselValidator" />
 				</h:inputText>
 
-				<h:outputText value="#{msg.patientDateOfBirthLabel}" />
-                                <h:inputText id="dob" value="#{personBean.person.birthDate}">
+				<h:outputText value="#{msg.newBirth}" />
+                                <h:inputText id="birthDate" value="#{personBean.person.birthDate}" required="#{true}">
 					<f:convertDateTime type="date" pattern="dd.MM.yyyy" />
 				</h:inputText>
                                 
-                                <h:outputText value="#{msg.patientAddressLabel}" />
+                                <h:outputText value="#{msg.newAdress}" />
                                 <h:inputText id="address" value="#{personBean.person.address}" required="#{true}"/>
                                 
-                                <h:outputText value="#{msg.patientPhoneNumberLabel}" />
-                                <h:inputText id="phoneNumber" value="#{personBean.person.number}" validator="#{personBean.validateNumber}" >
+                                <h:outputText value="#{msg.newNumber}" />
+                                <h:inputText id="number" value="#{personBean.person.number}" validator="#{personBean.validateNumber}" >
                                              <f:validator validatorId="numberValidator" />
                                 </h:inputText>
  
-				<h:outputText value="#{msg.patientWeightLabel}" />
+				<h:outputText value="#{msg.newWeight}" />
                                 <h:inputText id="weight" value="#{personBean.person.weight}" />
 
-				<h:outputText value="#{msg.patientHeightLabel}" />
+				<h:outputText value="#{msg.newHeight}" />
                                 <h:inputText id="height" value="#{personBean.person.height}"/>
 			</h:panelGrid>
 
-			<h:commandButton value="#{msg.patientFormOKButton}" action="#{personBean.addPerson}"  />
-
-			<h:panelGrid>
-				<h:messages id="messages" showDetail="#{true}" showSummary="#{false}" />
-			</h:panelGrid>
-
+                        <p:commandButton value="#{msg.newButton}" id="ajax" update="grow1" actionListener="#{personBean.addPerson}" styleClass="ui-priority-primary"/>
 		</h:form>
 	</ui:define>
-
 </ui:composition>

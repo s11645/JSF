@@ -2,26 +2,15 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html">
 	<div id="menubars">
 		<h:form>
-                    <p:toolbar>
-                        <f:facet name="left">
-                            <p:commandLink type="button" value="Wyszukiwarka osób" action="personSearch?faces-redirect=true"/>
-                            <span class="ui-separator">
-                                <span class="ui-icon ui-icon-grip-dotted-vertical" />
-                            </span>
-                            <p:commandLink type="button" value="Dodaj pacjenta" action="addPerson?faces-redirect=true"/>
-                            <span class="ui-separator">
-                                <span class="ui-icon ui-icon-grip-dotted-vertical" />
-                            </span>
-                                <p:commandLink type="button" value="Filtr" action="filterForm?faces-redirect=true"/>
-                        </f:facet>
-                        <f:facet name="right">
-                            <p:commandButton type="button" value="Narzędzia"/>
-                        </f:facet>
-                    </p:toolbar>
+			<ul>
+				<li><h:commandLink value="#{msg.search}" action="personSearch?faces-redirect=true" /></li>
+				<li><h:commandLink value="#{msg.new}" action="addPerson?faces-redirect=true" /></li>
+                                <li><h:commandLink value="#{msg.filter}" action="filterForm?faces-redirect=true" /></li>
+				<li class="lastbar"><h:commandLink value="#{msg.last}"/></li>
+			</ul>
 		</h:form>
 	</div>
 </ui:composition>

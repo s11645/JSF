@@ -35,7 +35,7 @@ body {
 }
 
 #menubars ul li a:hover, a:active {
-    background-color: #A60000;
+    background-color: #ffff00;
 }
 
 .heading {
@@ -67,5 +67,5 @@ body {
   border: thin solid black;
   background: #FFFFFF;	
   position:relative;
-  height: 560px;
+  height: 500px;
 }

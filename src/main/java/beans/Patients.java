@@ -35,7 +35,7 @@ public class Patients implements Serializable {
         private PatientSortUnit sortUnit = new PatientSortUnit();
 	private ListDataModel<PatientUnit> patientDataModel = new ListDataModel<PatientUnit>();
 	
-	@Inject //może korzystać z wszystkich metod PersonManager, cwaniak
+	@Inject 
 	private Manager manager;
 
         public PatientSortUnit getSortUnit() {

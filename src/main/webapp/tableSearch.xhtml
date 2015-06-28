@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    template="/templates/default.xhtml"
+    xmlns:a4j="http://richfaces.org/a4j">
+    <ui:define name="content">
+	<h:form>
+            <rich:messages/>
+            <rich:dataTable value="#{patBean.all}" var="patient" id="table" rows="30" >
+                <f:facet name="noData">
+                    Nothing found
+                </f:facet>
+                <rich:column sortBy="#{patient.add}" id="addSort" sortOrder="#{patBean.sortUnit.addSort}">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.add}" render="table" action="#{patBean.addSort}"/>
+                    </f:facet>
+                    #{patient.add}
+                </rich:column>
+                <rich:column sortBy="#{patient.first}" id="firstSort" sortOrder="#{patBean.sortUnit.firstSort}" style="width:70px">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.first}" render="table" action="#{patBean.firstSort}"/>
+                    </f:facet>
+                    #{patient.first}
+                </rich:column>
+                <rich:column sortBy="#{patient.second}" id="secondSort" sortOrder="#{patBean.sortUnit.secondSort}">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.second}" render="table" action="#{patBean.secondSort}"/>
+                    </f:facet>
+                    #{patient.second}
+                </rich:column>
+                <rich:column sortBy="#{patient.pesel}" id="peselSort" sortOrder="#{patBean.sortUnit.peselSort}">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.pesel}" render="table" action="#{patBean.peselSort}"/>
+                    </f:facet>
+                    #{patient.pesel}
+                </rich:column>
+                <rich:column sortBy="#{patient.weight}" id="weightSort" sortOrder="#{patBean.sortUnit.weightSort}">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.weight}" render="table" action="#{patBean.weightSort}"/>
+                    </f:facet>
+                    #{patient.weight}
+                </rich:column>
+                <rich:column sortBy="#{patient.height}" id="heightSort" sortOrder="#{patBean.sortUnit.heightSort}">
+                    <f:facet name="header">
+                        <a4j:commandLink value="#{msg.height}" render="table" action="#{patBean.heightSort}"/>
+                    </f:facet>
+                    #{patient.height}
+                </rich:column>
+
+		<rich:column>
+                    <f:facet name="header">#{msg.delete}</f:facet>
+                    <h:commandButton value="#{msg.deleteButton}" action="#{patBean.deletePatient}" />
+		</rich:column>
+            </rich:dataTable>
+	</h:form>
+    </ui:define>
+</ui:composition>

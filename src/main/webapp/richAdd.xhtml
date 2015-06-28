@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        template="/templates/default.xhtml"
+        xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="patBean">
+                    <p:growl id="siur" life="2000"/>   
+			<f:event type="postValidate" listener="#{patBean.dateVal}" />
+			<h:panelGrid columns="2">
+				<h:outputText value="#{msg.first}" />
+                                <rich:inplaceInput id="first" value="#{patBean.patientUnit.first}" required="#{true}" defaultLabel="Wpisz imię"/>
+                                
+				<h:outputText value="#{msg.second}" />
+                                <rich:inplaceInput id="second" value="#{patBean.patientUnit.second}" required="#{true}" defaultLabel="Wpisz nazwisko"/>
+
+				<h:outputText value="#{msg.pesel}" />
+                                <h:inputText id="pesel" value="#{patBean.patientUnit.pesel}" validator="#{patBean.peselHere}" required="#{true}">
+					<f:validator validatorId="peselVal" />
+				</h:inputText>
+
+				<h:outputText value="#{msg.birthday}" />
+                                <h:inputText id="birthday" value="#{patBean.patientUnit.birthday}" required="#{true}" >
+					<f:convertDateTime type="date" pattern="dd.MM.yyyy" />
+				</h:inputText>
+                                
+                                <h:outputText value="#{msg.living}" />
+                                <rich:inplaceInput id="living" value="#{patBean.patientUnit.living}" required="#{true}" defaultLabel="Wpisz adres zamieszkania"/>
+                                
+                                <h:outputText value="#{msg.phone}" />
+                                <h:inputText id="phone" value="#{patBean.patientUnit.phone}" validator="#{patBean.phoneVal}">
+                                             <f:validator validatorId="phoneV" />
+                                </h:inputText>
+ 
+				<h:outputText value="#{msg.weight}" />
+                                <rich:inplaceInput id="weight" value="#{patBean.patientUnit.weight}" defaultLabel="Wpisz wage"/>
+
+				<h:outputText value="#{msg.height}" />
+                                <rich:inplaceInput id="height" value="#{patBean.patientUnit.height}" defaultLabel="Wpisz swój wymiar"/>
+			</h:panelGrid>
+
+                        <p:commandButton value="#{msg.button}" id="ajax" update="siur" actionListener="#{patBean.addPatient}" styleClass="ui-priority-primary"/>
+		</h:form>
+	</ui:define>
+</ui:composition>

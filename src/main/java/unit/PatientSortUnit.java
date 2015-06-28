@@ -1,36 +1,36 @@
-package entities;
+package unit;
 import org.richfaces.component.SortOrder;
 
-public class Sort {
-        private SortOrder joinDateSort = SortOrder.unsorted;
-        private SortOrder nameSort = SortOrder.unsorted;
-        private SortOrder surnameSort = SortOrder.unsorted;
+public class PatientSortUnit {
+        private SortOrder addSort = SortOrder.unsorted;
+        private SortOrder firstSort = SortOrder.unsorted;
+        private SortOrder secondSort = SortOrder.unsorted;
         private SortOrder peselSort = SortOrder.unsorted;
         private SortOrder weightSort = SortOrder.unsorted;
         private SortOrder heightSort = SortOrder.unsorted;
 
-    public SortOrder getJoinDateSort() {
-        return joinDateSort;
+    public SortOrder getAddSort() {
+        return addSort;
     }
 
-    public void setJoinDateSort(SortOrder joinDateSort) {
-        this.joinDateSort = joinDateSort;
+    public void setAddSort(SortOrder addSort) {
+        this.addSort = addSort;
     }
 
-    public SortOrder getNameSort() {
-        return nameSort;
+    public SortOrder getFirstSort() {
+        return firstSort;
     }
 
-    public void setNameSort(SortOrder nameSort) {
-        this.nameSort = nameSort;
+    public void setFirstSort(SortOrder firstSort) {
+        this.firstSort = firstSort;
     }
 
-    public SortOrder getSurnameSort() {
-        return surnameSort;
+    public SortOrder getSecondSort() {
+        return secondSort;
     }
 
-    public void setSurnameSort(SortOrder surnameSort) {
-        this.surnameSort = surnameSort;
+    public void setSecondSort(SortOrder secondSort) {
+        this.secondSort = secondSort;
     }
 
     public SortOrder getPeselSort() {
@@ -57,5 +57,6 @@ public class Sort {
         this.heightSort = heightSort;
     }
         
-    
+        
+        
 }

@@ -1,35 +1,35 @@
-package entities;
+package unit;
 
 import java.util.Date;
 
-public class Filter {
+public class PatientFilterUnit {
     
-    private String name;
-    private String surname;
+    private String first;
+    private String second;
     private String pesel;
-    private Date birthDateFrom;
-    private Date birthDateTo;
+    private Date birthdayFrom;
+    private Date birthdayTo;
     private double weightFrom;
     private double weightTo;
     private double heightFrom;
     private double heightTo;
-    private Date addDateFrom;
-    private Date addDateTo;
+    private Date addFrom;
+    private Date addTo;
 
-    public String getName() {
-        return name;
+    public String getFirst() {
+        return first;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirst(String first) {
+        this.first = first;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getSecond() {
+        return second;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setSecond(String second) {
+        this.second = second;
     }
 
     public String getPesel() {
@@ -40,20 +40,20 @@ public class Filter {
         this.pesel = pesel;
     }
 
-    public Date getBirthDateFrom() {
-        return birthDateFrom;
+    public Date getBirthdayFrom() {
+        return birthdayFrom;
     }
 
-    public void setBirthDateFrom(Date birthDateFrom) {
-        this.birthDateFrom = birthDateFrom;
+    public void setBirthdayFrom(Date birthdayFrom) {
+        this.birthdayFrom = birthdayFrom;
     }
 
-    public Date getBirthDateTo() {
-        return birthDateTo;
+    public Date getBirthdayTo() {
+        return birthdayTo;
     }
 
-    public void setBirthDateTo(Date birthDateTo) {
-        this.birthDateTo = birthDateTo;
+    public void setBirthdayTo(Date birthdayTo) {
+        this.birthdayTo = birthdayTo;
     }
 
     public double getWeightFrom() {
@@ -88,20 +88,20 @@ public class Filter {
         this.heightTo = heightTo;
     }
 
-    public Date getAddDateFrom() {
-        return addDateFrom;
+    public Date getAddFrom() {
+        return addFrom;
     }
 
-    public void setAddDateFrom(Date addDateFrom) {
-        this.addDateFrom = addDateFrom;
+    public void setAddFrom(Date addFrom) {
+        this.addFrom = addFrom;
     }
 
-    public Date getAddDateTo() {
-        return addDateTo;
+    public Date getAddTo() {
+        return addTo;
     }
 
-    public void setAddDateTo(Date addDateTo) {
-        this.addDateTo = addDateTo;
+    public void setAddTo(Date addTo) {
+        this.addTo = addTo;
     }
     
     

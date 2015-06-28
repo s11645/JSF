@@ -9,9 +9,9 @@
 	template="/templates/default.xhtml">
 
 	<ui:define name="content">
-		<h:form id="filterBean">
+		<h:form id="filBean">
                     <rich:messages/>
-                    <rich:dataTable value="#{personBean.allPersons}" var="filterForm" id="tableFilter" filterVar="valueFilter">
+                    <rich:dataTable value="#{patBean.all}" var="forFilter" id="tableFilter" filterVar="valueFilter">
                         <f:facet name="noData">
                             Nothing found
                         </f:facet>
@@ -19,16 +19,16 @@
                             <rich:columnGroup>
                                 <rich:column rowspan="2">
                                     <h:panelGroup>
-                                        <h:outputText value="#{msg.filterName}" />
-                                        <h:inputText id="nameFilter" value="#{filterBean.filter.name}">
+                                        <h:outputText value="#{msg.filterFirst}" />
+                                        <h:inputText id="firstFilter" value="#{filBean.filter.first}">
                                             <a4j:ajax event="blur" render="tableFilter" execute="@this" />
                                         </h:inputText>
                                     </h:panelGroup>
                                 </rich:column>
                                 <rich:column rowspan="2" >
                                     <h:panelGroup>
-                                        <h:outputText value="#{msg.filterSurname}" />
-                                        <h:inputText id="surnameFilter" value="#{filterBean.filter.surname}" style="width:90px">
+                                        <h:outputText value="#{msg.filterSecond}" />
+                                        <h:inputText id="secondFilter" value="#{filBean.filter.second}" style="width:90px">
                                             <a4j:ajax event="blur" render="tableFilter" execute="@this" />
                                         </h:inputText>
                                     </h:panelGroup>
@@ -36,13 +36,13 @@
                                 <rich:column rowspan="2" >
                                     <h:panelGroup>
                                         <h:outputText value="#{msg.filterPesel}" />
-                                        <h:inputText id="peselFilter" value="#{filterBean.filter.pesel}" style="width:80px">
+                                        <h:inputText id="peselFilter" value="#{filBean.filter.pesel}" style="width:80px">
                                             <a4j:ajax event="blur" render="tableFilter" execute="@this" />
                                         </h:inputText>
                                     </h:panelGroup>
                                 </rich:column>
                                 <rich:column colspan="2" >
-                                    <h:outputText value="#{msg.filterBirth}" />
+                                    <h:outputText value="#{msg.filterBirthday}" />
                                 </rich:column>
                                 <rich:column colspan="2" >
                                     <h:outputText value="#{msg.filterWeight}" />
@@ -51,12 +51,12 @@
                                     <h:outputText value="#{msg.filterHeight}" />
                                 </rich:column>
                                 <rich:column colspan="2" >
-                                    <h:outputText value="#{msg.filterAddDate}" />
+                                    <h:outputText value="#{msg.filterAdd}" />
                                 </rich:column>
                                 <rich:column breakRowBefore="true">
                                     <h:panelGroup>
                                         <h:outputText value="#{msg.filterFrom}" />
-                                        <h:inputText id="birthDayFromFilter" value="#{filterBean.filter.birthDateFrom}" style="width:55px">
+                                        <h:inputText id="birthdayFromFilter" value="#{filBean.filter.birthdayFrom}" style="width:55px">
                                             <f:convertDateTime dateStyle="short" pattern="dd.MM.yyyy" />
                                             <a4j:ajax event="blur" render="tableFilter" execute="@this" />
                                         </h:inputText>
@@ -65,7 +65,7 @@
                                 <rich:column>
                                     <h:panelGroup>
                                         <h:outputText value="#{msg.filterTo}" />
-                                        <h:inputText id="birthDayToFilter" value="#{filterBean.filter.birthDateTo}" style="width:55px">
+                                        <h:inputText id="birthdayToFilter" value="#{filBean.filter.birthdayTo}" style="width:55px">
                                             <f:convertDateTime dateStyle="short" pattern="dd.MM.yyyy" />
                                             <a4j:ajax event="blur" render="tableFilter" execute="@this" />
                                         </h:inputText>
@@ -74,7 +74,7 @@
                                 <rich:column>
                                     <h:panelGroup>
                                         <h:outputText value="#{msg.filterFrom}" />
-                                        <h:inputText id="weightFromFilter" value="#{filterBean.filter.weightFrom}" style="width:40px">
+                                        <h:inputText id="weightFromFilter" value="#{filBean.filter.weightFrom}" style="width:40px">
                                             <a4j:ajax event="blur" render="tableFilter" execute="@this" />
                                         </h:inputText>
                                     </h:panelGroup>
@@ -82,7 +82,7 @@
                                 <rich:column>
                                     <h:panelGroup>
                                         <h:outputText value="#{msg.filterTo}" />
-                                        <h:inputText id="weightToFilter" value="#{filterBean.filter.weightTo}" style="width:40px">
+                                        <h:inputText id="weightToFilter" value="#{filBean.filter.weightTo}" style="width:40px">
                                             <a4j:ajax event="blur" render="tableFilter" execute="@this" />
                                         </h:inputText>
                                     </h:panelGroup>
@@ -90,7 +90,7 @@
                                 <rich:column>
                                     <h:panelGroup>
                                         <h:outputText value="#{msg.filterFrom}" />
-                                        <h:inputText id="heightFromFilter" value="#{filterBean.filter.heightFrom}" style="width:40px">
+                                        <h:inputText id="heightFromFilter" value="#{filBean.filter.heightFrom}" style="width:40px">
                                             <a4j:ajax event="blur" render="tableFilter" execute="@this" />
                                         </h:inputText>
                                     </h:panelGroup>
@@ -98,7 +98,7 @@
                                 <rich:column>
                                     <h:panelGroup>
                                         <h:outputText value="#{msg.filterTo}" />
-                                        <h:inputText id="heightToFilter" value="#{filterBean.filter.heightTo}" style="width:40px">
+                                        <h:inputText id="heightToFilter" value="#{filBean.filter.heightTo}" style="width:40px">
                                             <a4j:ajax event="blur" render="tableFilter" execute="@this" />
                                         </h:inputText>
                                     </h:panelGroup>
@@ -106,7 +106,7 @@
                                 <rich:column>
                                     <h:panelGroup>
                                         <h:outputText value="#{msg.filterFrom}" />
-                                        <h:inputText id="addDateFromFilter" value="#{filterBean.filter.addDateFrom}" style="width:55px">
+                                        <h:inputText id="addFromFilter" value="#{filBean.filter.addFrom}" style="width:55px">
                                             <f:convertDateTime dateStyle="short" pattern="dd.MM.yyyy" />
                                             <a4j:ajax event="blur" render="tableFilter" execute="@this" />
                                         </h:inputText>
@@ -115,7 +115,7 @@
                                 <rich:column>
                                     <h:panelGroup>
                                         <h:outputText value="#{msg.filterTo}" />
-                                        <h:inputText id="addDateToFilter" value="#{filterBean.filter.addDateTo}" style="width:55px">
+                                        <h:inputText id="addToFilter" value="#{filBean.filter.addTo}" style="width:55px">
                                             <f:convertDateTime dateStyle="short" pattern="dd.MM.yyyy" />
                                             <a4j:ajax event="blur" render="tableFilter" execute="@this" />
                                         </h:inputText>
@@ -124,54 +124,54 @@
                             </rich:columnGroup>
                         </f:facet>
                         <rich:column
-                            filterValue="#{filterBean.filter.name}"
-                            filterExpression="#{empty valueFilter or fn:startsWith(filterForm.name, valueFilter)}">
-                            <h:outputText value="#{filterForm.name}"/>
+                            filterValue="#{filBean.filter.first}"
+                            filterExpression="#{empty valueFilter or fn:startsWith(forFilter.first, valueFilter)}">
+                            <h:outputText value="#{forFilter.first}"/>
                         </rich:column>
                         <rich:column
-                            filterValue="#{filterBean.filter.surname}"
-                            filterExpression="#{fn:containsIgnoreCase(filterForm.surname, filterBean.filter.surname)}">
-                            <h:outputText value="#{filterForm.surname}"/>
+                            filterValue="#{filBean.filter.second}"
+                            filterExpression="#{fn:containsIgnoreCase(forFilter.second, filBean.filter.second)}">
+                            <h:outputText value="#{forFilter.second}"/>
                         </rich:column>
                         <rich:column
-                            filterValue="#{filterBean.filter.pesel}"
-                            filterExpression="#{fn:containsIgnoreCase(filterForm.pesel, filterBean.filter.pesel)}">
-                            <h:outputText value="#{filterForm.pesel}"/>
+                            filterValue="#{filBean.filter.pesel}"
+                            filterExpression="#{fn:containsIgnoreCase(forFilter.pesel, filBean.filter.second)}">
+                            <h:outputText value="#{forFilter.pesel}"/>
                         </rich:column>
                         <rich:column
-                            filter="#{filterBean.birthFromFilter}">
-                            <h:outputText value="#{filterForm.birthDate}">
+                            filter="#{filBean.birthdayFromFilter}">
+                            <h:outputText value="#{forFilter.birthday}">
                                 <f:convertDateTime dateStyle="short" pattern="dd.MM.yyyy"/>
                             </h:outputText>
                         </rich:column>
                         <rich:column
-                            filter="#{filterBean.birthToFilter}">
+                            filter="#{filBean.birthdayToFilter}">
                             <h:outputText value=""/>
                         </rich:column>
                         <rich:column
-                            filter="#{filterBean.weightFromFilter}">
-                            <h:outputText value="#{filterForm.weight}"/>
+                            filter="#{filBean.weightFromFilter}">
+                            <h:outputText value="#{forFilter.weight}"/>
                         </rich:column>
                         <rich:column
-                            filter="#{filterBean.weightToFilter}">
+                            filter="#{filBean.weightToFilter}">
                             <h:outputText value=""/>
                         </rich:column>
                         <rich:column
-                            filter="#{filterBean.heightFromFilter}">
-                            <h:outputText value="#{filterForm.height}"/>
+                            filter="#{filBean.heightFromFilter}">
+                            <h:outputText value="#{forFilter.height}"/>
                         </rich:column>
                         <rich:column
-                            filter="#{filterBean.heightToFilter}">
+                            filter="#{filBean.heightToFilter}">
                             <h:outputText value=""/>
                         </rich:column>
                         <rich:column
-                            filter="#{filterBean.addDateFromFilter}">
-                            <h:outputText value="#{filterForm.joinDate}">
+                            filter="#{filBean.addFromFilter}">
+                            <h:outputText value="#{forFilter.add}">
                                 <f:convertDateTime dateStyle="short" pattern="dd.MM.yyyy"/>
                             </h:outputText>
                         </rich:column>
                         <rich:column
-                            filter="#{filterBean.addDateToFilter}">
+                            filter="#{filBean.addToFilter}">
                             <h:outputText value=""/>
                         </rich:column>
                     </rich:dataTable>
